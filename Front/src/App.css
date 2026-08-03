@@ -1,0 +1,16 @@
+.root{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.scrol_product{
+    gap: 15.9px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    line-height: 20px;
+    width: 70vw;
+    height: 100vh;
+    background-color: red;
+}
