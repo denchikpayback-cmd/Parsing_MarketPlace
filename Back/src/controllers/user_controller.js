@@ -1,42 +1,69 @@
 import db from "../db.js/db.js"
 import bcrypt from "bcrypt"
 import { validationResult } from "express-validator";
+import jwt from "jsonwebtoken"
+import { delCookie, setAuthResponse } from "../middleware/auth.js";
+
 
 class UserController {
     async registerUser(req, res) {
         const errors = validationResult(req)
         if(!errors.isEmpty()){
-            return res.status(400).json({success: errors.array()})
+            return res.status(400).json({success: false, errors: errors.array()})
         }
         else{
             const {email, password} = req.body;
-            const saltRounds = 10;
-            const password_hash = await bcrypt.hash(password, saltRounds)
-            const newUser = await db.query(`INSERT INTO users (email, password_hash) values ($1, $2) RETURNING *`, [email, password_hash])
-            console.log(email, password_hash);
-            res.json({ message: "ok" });
-            console.log("Валидация успешная")
+            try {
+                const saltRounds = 10;
+                const password_hash = await bcrypt.hash(password, saltRounds)
+                const newUser = await db.query(`INSERT INTO users (email, password_hash) values ($1, $2) RETURNING *`, [email, password_hash])
+                return setAuthResponse(res, newUser.rows[0])
+            } catch (error) {
+                if (error.code === '23505') {
+                return res.status(409).json({ 
+                    success: false, 
+                    error: "Email уже используется" 
+                });
+            }
+            console.error("❌ Ошибка регистрации:", error);
+            return res.status(500).json({ 
+                success: false, 
+                error: "Ошибка сервера" })
+            }
         }
-        
     };
-    async loginUser(req, res){
-        console.log(req.body)
-        const {email, password} = req.body;
-        const oldUser = await db.query(`SELECT * FROM users WHERE email = $1`, [email])
-        if(oldUser.rows.length === 0){
-            res.status(401).json({error: "Пользователь не найден"})
-        }
-        else{
-            const check = await bcrypt.compare(password, oldUser.rows[0].password_hash)
-            if(check){
-                res.status(200).json({success: "Успешно"})
-            }
-            else{
-                res.status(404).json({succes: false})
-            }
-        }
+    async loginUser(req, res) {
+    const { email, password } = req.body;
+
+    const oldUser = await db.query(`SELECT * FROM users WHERE email = $1`, [email]);
+
+    if (oldUser.rows.length === 0) {
+        return res.status(401).json({ error: "Пользователь не найден" });
     }
-}
+    
+    const check = await bcrypt.compare(password, oldUser.rows[0].password_hash);
+    
+    if (!check) {
+                return res.status(401).json({ 
+                    success: false, 
+                    error: "Неверный пароль" 
+                });}
+    return setAuthResponse(res, oldUser.rows[0])}
+
+    async logout(req, res){
+        await delCookie(res);
+        return res.status(200).json({
+            seccess: true,
+            message: "Вы вышли из аккаунта"
+        })
+    }
+
+    async aboutMe(req, res){
+        console.log("aaa")
+    }
+};
+
+    
 
 
 export default new UserController(); 

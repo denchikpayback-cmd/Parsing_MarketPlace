@@ -1,0 +1,252 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-wrapper {
+  display: flex;
+  width: 100vw;      
+  height: 100vh;      
+  background-color: #0b0d07;
+  color: #e8e8e8;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;   
+}
+
+
+.login-left {
+  width: 45%;
+  height: 100%;  
+  padding: 60px 50px 40px 60px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #13170e 0%, #0b0d07 100%);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 70px;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  background: #2a3220;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b4c99f;
+}
+
+.left-content {
+  flex: 1;             
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
+
+.left-content h1 {
+  font-size: 44px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #f0f0f0;
+}
+
+.green-accent {
+  color: #b4c99f;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #9ba28d;
+  line-height: 1.5;
+  margin-bottom: 50px;
+  max-width: 400px;
+}
+
+.feature-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.2s;
+  max-width: 420px;
+}
+
+.feature-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  background: #1e2418;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b4c99f;
+  flex-shrink: 0;
+}
+
+.feature-text h4 {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.feature-text p {
+  margin: 0;
+  font-size: 12px;
+  color: #7a8270;
+}
+
+.login-right {
+  flex: 1;
+  height: 100%;      
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-form-container h2 {
+  font-size: 30px;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.login-form-container p {
+  color: #9ba28d;
+  font-size: 14px;
+  margin: 0 0 40px 0;
+}
+
+.input-group {
+  margin-bottom: 24px;
+}
+
+.input-label-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #9ba28d;
+}
+
+.forgot-link {
+  color: #b4c99f;
+  cursor: pointer;
+}
+
+.login-input {
+  width: 100%;
+  background: #1a1e14;
+  border: 1px solid #2c3422;
+  padding: 14px 16px;
+  border-radius: 10px;
+  color: #e8e8e8;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.login-input:focus {
+  border-color: #b4c99f;
+  box-shadow: 0 0 0 3px rgba(180, 201, 159, 0.1);
+}
+
+.login-input::placeholder {
+  color: #5a624a;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #b4c99f;
+  border: none;
+  border-radius: 10px;
+  color: #0b0d07;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-top: 8px;
+}
+
+.login-btn:hover {
+  background-color: #c9deae;
+}
+
+.register-link-area {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 14px;
+  color: #9ba28d;
+}
+
+.register-link {
+  color: #b4c99f;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.error-msg {
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: 15px !important;
+  margin-bottom: 0 !important;
+  text-align: center;
+}
+
+
+@media (max-width: 1000px) {
+  .login-wrapper {
+    flex-direction: column;
+    height: auto;
+    overflow: auto; 
+  }
+  .login-left {
+    width: 100%;
+    height: auto;
+    padding: 40px 30px;
+    align-items: center;
+    text-align: center;
+  }
+  .left-content {
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .subtitle {
+    text-align: center;
+  }
+  .feature-item {
+    text-align: left;
+  }
+  .login-right {
+    height: auto;
+    padding: 40px 20px;
+  }
+}

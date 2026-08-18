@@ -1,0 +1,15 @@
+$kind: http-request
+name: http://localhost:3001/user/authorization
+description: ""
+url: http://localhost:3001/user/authorization
+method: POST
+body:
+  type: json
+  content: " {\r
+
+    \    \"email\": \"q@q.ru\",\r
+
+    \    \"password\": \"12345678\"\r
+
+    \ }"
+order: 1786464754090
