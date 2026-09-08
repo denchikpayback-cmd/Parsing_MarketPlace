@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../components style/Login.css";
-
+import { loginRequest } from "../../function/userRegister";
+import { DirectAuth } from "../../function/navigate";
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -14,31 +15,20 @@ function Login() {
             return;
         }
         
-        const res = await fetch("http://localhost:3001/user/login", {
-            method: "POST",
-            headers: { 'Content-Type': "application/json" },
-            body: JSON.stringify({ email, password }),
-            credentials: "include"
-        });
-        const data = await res.json();
-            if(res.ok){
+        const { res, data } = await loginRequest(email, password);
+        
+        if(res.ok){
             if(data.email){
-                localStorage.setItem("userEmail", data.email)
-                navigate("/search")
+                localStorage.setItem("userEmail", data.email);
+                navigate("/search");
+                console.log("Успешный вход");
             }
-            }
-
-        if (res.ok) {
-            navigate("/search");
-            console.log("Успешный вход");
         } else {
             setFlag("Неверная почта или пароль");
         }
     }
 
-    function Direct() {
-        navigate("/authorization");
-    }
+    
 
     return (
         <div className="login-wrapper">
@@ -127,7 +117,7 @@ function Login() {
                         <button className="login-btn" type="button" onClick={request}>Войти</button>
                         
                         <div className="register-link-area">
-                            Нет аккаунта? <span className="register-link" onClick={Direct}>Зарегистрироваться</span>
+                            Нет аккаунта? <span className="register-link" onClick={DirectAuth}>Зарегистрироваться</span>
                         </div>
 
                         {flag && <p className="error-msg">{flag}</p>}

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Cards from './components/Card';
+
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 

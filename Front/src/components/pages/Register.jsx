@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../components style/Login.css"; // Используем те же стили, что и для логина!
+import "../../components style/Login.css"; 
 
 function Register() {
     const [email, setEmail] = useState("");
@@ -23,7 +23,7 @@ function Register() {
             
             let hasError = false;
             
-            // Обработка ошибок валидации от сервера
+            
             if (data?.success?.length > 0) {
                 data.success.forEach(err => {
                     if (err.path === "email") {
@@ -37,17 +37,16 @@ function Register() {
                 });
             }
 
-            // ======= ГЛАВНОЕ ИСПРАВЛЕНИЕ =======
-            // 1. Сначала проверяем: если есть ошибки, то мы ВООБЩЕ НИКУДА НЕ ИДЕМ.
+            
             if (hasError) {
-                return; // Просто выходим из функции, не делаем navigate
+                return; 
             }
 
-            // 2. Если ошибок нет, и ответ сервера хороший - только тогда идем.
+            
             if (res.ok) {
                 navigate("/search");
             }
-            // ===================================
+            
             
         } catch (error) {
             console.log("Ошибка регистрации");
@@ -55,24 +54,12 @@ function Register() {
     };
     
     function Direct() {
-        navigate("/"); // Переход на страницу входа
-    }
-
-    async function Logout() {
-        const res = await fetch("http://localhost:3001/user/logout", {
-            method: "POST",
-            credentials: "include"
-        });
-        if (res.ok) {
-            console.log("Кука успешна удалена");
-        } else {
-            console.log("Кука не удалена");
-        }
+        navigate("/"); 
     }
 
     return (
         <div className="login-wrapper">
-            {/* --- ЛЕВАЯ ЧАСТЬ (Информационная, идентична логину) --- */}
+            
             <div className="login-left">
                 <div className="logo-area">
                     <div className="logo-icon">
@@ -134,7 +121,7 @@ function Register() {
                 </div>
             </div>
 
-            {/* --- ПРАВАЯ ЧАСТЬ (Форма регистрации) --- */}
+            
             <div className="login-right">
                 <div className="login-form-container">
                     <h2>Регистрация</h2>
@@ -151,7 +138,7 @@ function Register() {
                                 placeholder="Введите email:" 
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            {/* Вывод ошибки под инпутом */}
+                            
                             {errEmail && <p className="error-msg" style={{ marginTop: '5px', textAlign: 'left' }}>{errEmail}</p>}
                         </div>
 
@@ -165,7 +152,7 @@ function Register() {
                                 placeholder="Введите password:" 
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            {/* Вывод ошибки под инпутом */}
+                            
                             {errPassword && <p className="error-msg" style={{ marginTop: '5px', textAlign: 'left' }}>{errPassword}</p>}
                         </div>
 

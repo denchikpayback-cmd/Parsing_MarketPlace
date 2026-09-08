@@ -1,0 +1,142 @@
+.query-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #022105;
+  border-radius: 12px;
+  border: 1px solid #f0f0f2;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.query-item:hover {
+  border-color: #d4b8ff;
+  box-shadow: 0 2px 12px rgba(120, 80, 200, 0.08);
+}
+
+.query-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.query-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.query-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fdfdff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.query-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+  flex-wrap: nowrap; /* ← ЗАПРЕЩАЕМ ПЕРЕНОС */
+}
+
+.query-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  white-space: nowrap; /* ← ЗАПРЕЩАЕМ ПЕРЕНОС */
+  flex-shrink: 0; /* ← ЗАПРЕЩАЕМ СЖАТИЕ */
+}
+
+.marketplace-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap; /* ← ЗАПРЕЩАЕМ ПЕРЕНОС */
+  flex-shrink: 0; /* ← ЗАПРЕЩАЕМ СЖАТИЕ */
+}
+
+.badge-wildberries {
+  background: #f3f0ff;
+  color: #7c3aed;
+}
+
+.badge-ozon {
+  background: #eef2ff;
+  color: #2563eb;
+}
+
+.badge-yandex {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.marketplace-badge svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.find-btn {
+  flex-shrink: 0;
+  margin-left: 12px;
+  padding: 4px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #7c3aed;
+  background: #f3f0ff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+  opacity: 0;
+  pointer-events: none;
+  height: 32px;
+  line-height: 32px;
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.query-item:hover .find-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.find-btn:hover {
+  background: #e8e0ff;
+}
+
+@media (max-width: 480px) {
+  .query-item {
+    padding: 10px 12px;
+    flex-wrap: wrap;
+  }
+
+  .query-meta {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+
+  .query-price {
+    font-size: 16px;
+  }
+
+  .find-btn {
+    opacity: 1;
+    pointer-events: auto;
+    padding: 2px 12px;
+    font-size: 12px;
+    height: 28px;
+    line-height: 28px;
+  }
+}

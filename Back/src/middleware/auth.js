@@ -31,7 +31,9 @@ export const delCookie = async (res) => {
 };
 export const authMiddleware = (req, res, next) => {
     const token = req.cookies.token;
-    
+    const decoded = jwt.verify(token, "secret123");
+    req.userId = decoded.id;
+    console.log(decoded.id)
     if (!token) {
         console.log("Пользователь не авторизован")
         return res.status(401).json({
